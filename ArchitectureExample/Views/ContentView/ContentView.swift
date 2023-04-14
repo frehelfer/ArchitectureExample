@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var allServices: AllServices
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationStack {
+            NavigationLink {
+                SecondView(secondViewService: allServices.secondViewService)
+            } label: {
+                Text("Go to Second View")
+            }
+
         }
         .padding()
     }
@@ -22,5 +26,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(AllServices())
     }
 }
